@@ -1,5 +1,9 @@
 import { useRef } from 'react'
-import Layout from '../../components/Layout'
+
+// export async function getServerSideProps() {
+//   return {}
+// }
+
 export default function Write() {
   const idRef = useRef(undefined)
   const titleRef = useRef(undefined)
@@ -27,10 +31,14 @@ export default function Write() {
     }
   }
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Write a post</title>
+      </Head>
       <h1>Write a post</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
+        <br />
         <br />
         <input
           type="text"
@@ -40,6 +48,7 @@ export default function Write() {
           ref={titleRef}
         />
         <br />
+        <br />
         <textarea
           type="text"
           name="content"
@@ -48,8 +57,13 @@ export default function Write() {
           ref={contentRef}
         />
         <br />
+        <br />
         <input type="submit" value="Create" />
       </form>
-    </Layout>
+    </>
   )
+}
+
+Write.getInitalProps = async () => {
+  return {}
 }

@@ -1,9 +1,8 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const name = 'Your Name'
 export const siteTitle = 'Next.js Sample Website'
@@ -16,6 +15,14 @@ export default function Layout({ children, home }) {
         : 'light'
       : 'light'
   )
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.querySelector('body').classList.add('dark')
+    } else {
+      document.querySelector('body').classList.remove('dark')
+    }
+  }, [theme])
 
   const handleClick = () => {
     const theme = localStorage.getItem('theme')
@@ -32,26 +39,16 @@ export default function Layout({ children, home }) {
   return (
     <div className="bg-pink-50 dark:bg-black dark:text-gray-200 h-screen">
       <div className={styles.container}>
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-          <meta
-            name="description"
-            content="Learn how to build a personal website using Next.js"
-          />
-          <meta
-            property="og:image"
-            content={`https://og-image.vercel.app/${encodeURI(
-              siteTitle
-            )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-          />
-          <meta name="og:title" content={siteTitle} />
-          <meta name="twitter:card" content="summary_large_image" />
-        </Head>
         <button className="w-12 px-2" onClick={handleClick}>
           {theme === 'dark' ? (
-            <img src="/dark-mode-6682.svg" alt="dark" />
+            <Image src="/sun-8790.svg" alt="light" width={120} height={120} />
           ) : (
-            <img src="/sun-8790.svg" alt="light" />
+            <Image
+              src="/dark-mode-6682.svg"
+              alt="dark"
+              width={120}
+              height={120}
+            />
           )}
         </button>
         <header className={styles.header}>

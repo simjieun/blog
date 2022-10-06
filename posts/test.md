@@ -1,7 +1,6 @@
-----
- title:'test post'
- date: '2022-09-26'
- ---
+---
+title: 'test'
+date: '2022-10-06'
+---
  
- ### hello world
-### nice to meet you
+test
